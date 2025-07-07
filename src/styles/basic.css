@@ -1,0 +1,172 @@
+/* Add these to your existing basic.css */
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-message {
+  color: #ff6b6b;
+  background-color: #2c2c2c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  color: #51dd7b;
+  background-color: #2c2c2c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.option-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.option-input input {
+  flex-grow: 1;
+}
+
+.remove-option-btn {
+  background: none;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 0 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.option-buttons {
+  margin-top: 0.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.poll-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+
+.form-container {
+  position: relative;
+}
+
+.top-left-button {
+  position: absolute;
+  top: 20px; 
+  left: 20px; 
+  z-index: 1000; 
+  background-color: #555; 
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: none; 
+  transition: background-color 0.3s ease;
+}
+
+.top-left-button:hover {
+  background-color: #777;
+}
+.dashboard-container {
+  max-width: 900px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  background-color: #282c34; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #f0f0f0;
+  font-family: 'Arial', sans-serif; 
+  text-align: center; 
+}
+
+
+.poll-form,
+.poll-card {
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto; 
+  max-width: 600px; 
+}
+
+.form-group label {
+  display: block; 
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: calc(100% - 20px); 
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.option-input input {
+  width: auto; 
+  flex-grow: 1; 
+}
+
+.option-buttons button,
+.form-actions button {
+  display: inline-block; 
+}
+
+.poll-card {
+    margin: 15px auto; 
+    background-color: #3a3f47;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-container h3 {
+    text-align: center;
+}
+
+.delete-btn{
+  color: white;
+  background-color: red;
+}
+
+.edit-btn{
+  color: #f0f0f0;
+  background-color: green;
+}
