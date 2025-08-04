@@ -1,3 +1,5 @@
+// C:\Users\akash\OneDrive\Desktop\votingapp\frontend\src\pages\Login.jsx
+
 import { useState } from 'react';
 import { loginUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +10,8 @@ function Login() {
     username: '',
     password: ''
   });
-
   const [message, setMessage] = useState('');
-  const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,12 +23,12 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true
+    setMessage('');
+
     try {
       const res = await loginUser(formData);
-      const { token, user } = res.data; // FIXED
-
-      setToken(token);
-      setMessage("Login successful");
+      const { token, user } = res.data;
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -40,12 +41,13 @@ function Login() {
 
     } catch (err) {
       setMessage(err.response?.data?.message || 'Login failed');
+      setLoading(false); // Set loading to false only on failure
     }
+    // No need to set loading to false on success because the component will unmount
   };
 
   return (
     <div className="form-container">
-      {/* Add the "top-left-button" class here */}
       <button onClick={() => navigate('/')} className="top-left-button">
         Go Back
       </button>
@@ -59,6 +61,7 @@ function Login() {
           value={formData.username}
           onChange={handleChange}
           required
+          disabled={loading} // Disable input during loading
         />
 
         <input
@@ -68,9 +71,12 @@ function Login() {
           value={formData.password}
           onChange={handleChange}
           required
+          disabled={loading} // Disable input during loading
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
 
         {message && <p>{message}</p>}
       </form>

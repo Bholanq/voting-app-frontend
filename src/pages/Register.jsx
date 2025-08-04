@@ -1,6 +1,8 @@
+// frontend\src\pages\Register.jsx
+
 import { useState } from 'react';
 import { registerUser } from '../services/api';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
 function Register() {
@@ -9,9 +11,9 @@ function Register() {
     password: '',
     confirmPassword: ''
   });
-
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(false); // Add loading state
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,24 +21,29 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.password !== formData.confirmPassword) {
       setMessage("Passwords do not match");
       return;
     }
 
+    setLoading(true); // Set loading to true
+    setMessage('');
+
     try {
       const { username, password } = formData;
       const res = await registerUser({ username, password });
-      setMessage(res.message);
+      setMessage("Registration successful! You can now log in.");
+      // Clear form on success
+      setFormData({ username: '', password: '', confirmPassword: '' });
     } catch (err) {
       setMessage(err.response?.data?.message || 'Registration failed');
+    } finally {
+      setLoading(false); // Set loading to false
     }
   };
 
  return (
     <div className="form-container">
-      {/* Add the "top-left-button" class here */}
       <button onClick={() => navigate('/')} className="top-left-button">
         Go Back
       </button>
@@ -50,6 +57,7 @@ function Register() {
           value={formData.username}
           onChange={handleChange}
           required
+          disabled={loading} // Disable input during loading
         />
 
         <input
@@ -59,6 +67,7 @@ function Register() {
           value={formData.password}
           onChange={handleChange}
           required
+          disabled={loading} // Disable input during loading
         />
 
         <input
@@ -68,9 +77,12 @@ function Register() {
           value={formData.confirmPassword}
           onChange={handleChange}
           required
+          disabled={loading} // Disable input during loading
         />
 
-        <button type="submit">Register</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
 
         {message && <p>{message}</p>}
       </form>

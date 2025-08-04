@@ -1,15 +1,11 @@
-// src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import all pages
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import VoterDashboard from "./pages/VoterDashboard";
-// import Vote from "./pages/Vote"; // REMOVE THIS LINE
 
-// import protected route wrapper
 import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
@@ -40,17 +36,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* REMOVE THE OLD /vote ROUTE */}
-        {/* <Route
-          path="/vote"
-          element={
-            <ProtectedRoute role="voter">
-              <Vote />
-            </ProtectedRoute>
-          }
-        /> 
-        */}
       </Routes>
     </BrowserRouter>
   );
